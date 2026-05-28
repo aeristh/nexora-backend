@@ -18,14 +18,26 @@ export default class BlogsController {
     async public({ request, response }: HttpContext) {
         const page = Number(request.qs().page) || 1
         const limit = Number(request.qs().limit) || 3
+        const search = request.qs().search as string | undefined
+        const category = request.qs().category as string | undefined
+        const tag = request.qs().tag as string | undefined
 
-        const blogs = await Blog.query()
+        const query = Blog.query()
             .whereNull('deletedAt')
             .preload('author')
-            .preload('deletedByUser')
             .orderBy('createdAt', 'desc')
-            .paginate(page, limit)
 
+        if (search) {
+            query.where('title', 'ilike', `%${search}%`)
+        }
+        if (category) {
+            query.where('category', category)
+        }
+        if (tag) {
+            query.whereRaw('? = ANY(tags)', [tag])
+        }
+
+        const blogs = await query.paginate(page, limit)
         const result = blogs.toJSON()
 
         return response.ok({
@@ -37,6 +49,8 @@ export default class BlogsController {
                 coverImage: b.coverImage,
                 authorName: b.author.fullName,
                 authorId: b.authorId,
+                category: b.category,
+                tags: b.tags,
                 createdAt: b.createdAt,
                 updatedAt: b.updatedAt,
             })),
@@ -122,6 +136,8 @@ export default class BlogsController {
                 coverImage: blog.coverImage,
                 authorName: blog.author.fullName,
                 authorId: blog.authorId,
+                category: blog.category,
+                tags: blog.tags,
                 createdAt: blog.createdAt,
                 updatedAt: blog.updatedAt,
             }
@@ -154,12 +170,26 @@ export default class BlogsController {
             coverImage = `/uploads/blogs/${filename}`
         }
 
+        const category = request.input('category') || null
+
+        const rawTags = request.input('tags')
+        let tags: string[] | null = null
+        if (rawTags) {
+            try {
+                tags = typeof rawTags === 'string' ? JSON.parse(rawTags) : rawTags
+            } catch {
+                tags = null
+            }
+        }
+
         const blog = await Blog.create({
             title,
             slug,
             content,
             coverImage,
             authorId: user.id,
+            category,
+            tags,
         })
 
         return response.created({ data: blog })
@@ -181,6 +211,8 @@ export default class BlogsController {
                 coverImage: blog.coverImage,
                 authorName: blog.author.fullName,
                 authorId: blog.authorId,
+                category: blog.category,
+                tags: blog.tags,
                 createdAt: blog.createdAt,
                 updatedAt: blog.updatedAt,
             }
@@ -197,6 +229,17 @@ export default class BlogsController {
 
         blog.title = request.input('title', blog.title)
         blog.content = request.input('content', blog.content)
+
+        const newCategory = request.input('category')
+        blog.category = newCategory !== undefined ? (newCategory || null) : blog.category
+
+        const rawTags = request.input('tags')
+        if (rawTags !== undefined && rawTags !== null) {
+            try {
+                blog.tags = typeof rawTags === 'string' ? JSON.parse(rawTags) : rawTags
+            } catch {
+            }
+        }
 
         const coverFile = request.file('coverImage', {
             extnames: ['jpg', 'jpeg', 'png', 'webp'],

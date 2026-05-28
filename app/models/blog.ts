@@ -14,6 +14,12 @@ export default class Blog extends BaseModel {
     declare slug: string | null
 
     @column()
+    declare category: string | null
+
+    @column()
+    declare tags: string[] | null
+
+    @column()
     declare content: string
 
     @column()

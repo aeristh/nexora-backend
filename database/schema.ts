@@ -33,10 +33,12 @@ export class AuthAccessTokenSchema extends BaseModel {
 }
 
 export class BlogSchema extends BaseModel {
-  static $columns = ['authorId', 'content', 'coverImage', 'createdAt', 'deletedAt', 'deletedBy', 'id', 'slug', 'title', 'updatedAt'] as const
+  static $columns = ['authorId', 'category', 'content', 'coverImage', 'createdAt', 'deletedAt', 'deletedBy', 'id', 'slug', 'tags', 'title', 'updatedAt'] as const
   $columns = BlogSchema.$columns
   @column()
   declare authorId: number | null
+  @column()
+  declare category: string | null
   @column()
   declare content: string
   @column()
@@ -51,6 +53,8 @@ export class BlogSchema extends BaseModel {
   declare id: number
   @column()
   declare slug: string | null
+  @column()
+  declare tags: any | null
   @column()
   declare title: string
   @column.dateTime({ autoCreate: true, autoUpdate: true })
