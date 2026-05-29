@@ -117,6 +117,33 @@ export class GallerySchema extends BaseModel {
   declare width: number | null
 }
 
+export class ProjectSchema extends BaseModel {
+  static $columns = ['content', 'createdAt', 'deletedAt', 'deletedBy', 'description', 'id', 'imagePath', 'slug', 'tag', 'title', 'updatedAt'] as const
+  $columns = ProjectSchema.$columns
+  @column()
+  declare content: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column.dateTime()
+  declare deletedAt: DateTime | null
+  @column()
+  declare deletedBy: number | null
+  @column()
+  declare description: string | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare imagePath: string | null
+  @column()
+  declare slug: string
+  @column()
+  declare tag: string
+  @column()
+  declare title: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
+}
+
 export class UserSchema extends BaseModel {
   static $columns = ['createdAt', 'email', 'fullName', 'id', 'isActive', 'password', 'role', 'updatedAt'] as const
   $columns = UserSchema.$columns

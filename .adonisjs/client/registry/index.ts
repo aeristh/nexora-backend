@@ -24,6 +24,18 @@ const routes = {
     tokens: [{"old":"/gallery/public","type":0,"val":"gallery","end":""},{"old":"/gallery/public","type":0,"val":"public","end":""}],
     types: placeholder as Registry['gallery.index_public']['types'],
   },
+  'projects.index_public': {
+    methods: ["GET","HEAD"],
+    pattern: '/projects/public',
+    tokens: [{"old":"/projects/public","type":0,"val":"projects","end":""},{"old":"/projects/public","type":0,"val":"public","end":""}],
+    types: placeholder as Registry['projects.index_public']['types'],
+  },
+  'projects.show_by_slug': {
+    methods: ["GET","HEAD"],
+    pattern: '/projects/slug/:slug',
+    tokens: [{"old":"/projects/slug/:slug","type":0,"val":"projects","end":""},{"old":"/projects/slug/:slug","type":0,"val":"slug","end":""},{"old":"/projects/slug/:slug","type":1,"val":"slug","end":""}],
+    types: placeholder as Registry['projects.show_by_slug']['types'],
+  },
   'blogs.public': {
     methods: ["GET","HEAD"],
     pattern: '/blogs/public',
@@ -149,6 +161,42 @@ const routes = {
     pattern: '/gallery/:id',
     tokens: [{"old":"/gallery/:id","type":0,"val":"gallery","end":""},{"old":"/gallery/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['gallery.destroy']['types'],
+  },
+  'projects.trashed': {
+    methods: ["GET","HEAD"],
+    pattern: '/projects/trashed',
+    tokens: [{"old":"/projects/trashed","type":0,"val":"projects","end":""},{"old":"/projects/trashed","type":0,"val":"trashed","end":""}],
+    types: placeholder as Registry['projects.trashed']['types'],
+  },
+  'projects.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/projects',
+    tokens: [{"old":"/projects","type":0,"val":"projects","end":""}],
+    types: placeholder as Registry['projects.index']['types'],
+  },
+  'projects.store': {
+    methods: ["POST"],
+    pattern: '/projects',
+    tokens: [{"old":"/projects","type":0,"val":"projects","end":""}],
+    types: placeholder as Registry['projects.store']['types'],
+  },
+  'projects.restore': {
+    methods: ["PUT"],
+    pattern: '/projects/:id/restore',
+    tokens: [{"old":"/projects/:id/restore","type":0,"val":"projects","end":""},{"old":"/projects/:id/restore","type":1,"val":"id","end":""},{"old":"/projects/:id/restore","type":0,"val":"restore","end":""}],
+    types: placeholder as Registry['projects.restore']['types'],
+  },
+  'projects.update': {
+    methods: ["PUT"],
+    pattern: '/projects/:id',
+    tokens: [{"old":"/projects/:id","type":0,"val":"projects","end":""},{"old":"/projects/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['projects.update']['types'],
+  },
+  'projects.destroy': {
+    methods: ["DELETE"],
+    pattern: '/projects/:id',
+    tokens: [{"old":"/projects/:id","type":0,"val":"projects","end":""},{"old":"/projects/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['projects.destroy']['types'],
   },
   'blogs.index': {
     methods: ["GET","HEAD"],

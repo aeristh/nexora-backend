@@ -11,5 +11,6 @@ export const controllers = {
   Gallery: () => import('#controllers/gallery_controller'),
   NewAccount: () => import('#controllers/new_account_controller'),
   Profile: () => import('#controllers/profile_controller'),
+  Projects: () => import('#controllers/projects_controller'),
   Users: () => import('#controllers/users_controller'),
 }

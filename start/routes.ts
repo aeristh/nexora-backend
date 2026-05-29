@@ -7,11 +7,14 @@ import { middleware } from './kernel.js'
 import BlogsController from '#controllers/blogs_controller'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
+import ProjectsController from '#controllers/projects_controller'
 
 router.post('/register', [AuthController, 'register'])
 router.post('/login', [AuthController, 'login'])
 
 router.get('/gallery/public', [GalleryController, 'indexPublic'])
+router.get('/projects/public', [ProjectsController, 'indexPublic'])
+router.get('/projects/slug/:slug', [ProjectsController, 'showBySlug'])
 
 router.get('/uploads/*', async ({ params, response }) => {
   const parts = Array.isArray(params['*']) ? params['*'] : [params['*']]
@@ -63,6 +66,18 @@ router
       .use(middleware.role(['admin']))
     router.put('/gallery/:id', [GalleryController, 'update'])
     router.delete('/gallery/:id', [GalleryController, 'destroy'])
+      .use(middleware.role(['admin']))
+
+    router.get('/projects/trashed', [ProjectsController, 'trashed'])
+      .use(middleware.role(['admin']))
+    router.get('/projects', [ProjectsController, 'index'])
+    router.post('/projects', [ProjectsController, 'store'])
+      .use(middleware.role(['admin']))
+    router.put('/projects/:id/restore', [ProjectsController, 'restore'])
+      .use(middleware.role(['admin']))
+    router.put('/projects/:id', [ProjectsController, 'update'])
+      .use(middleware.role(['admin']))
+    router.delete('/projects/:id', [ProjectsController, 'destroy'])
       .use(middleware.role(['admin']))
 
     router.get('/blogs', [BlogsController, 'index'])

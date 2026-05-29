@@ -7,6 +7,8 @@ export type ScannedRoutes = {
     'auth.register': { paramsTuple?: []; params?: {} }
     'auth.login': { paramsTuple?: []; params?: {} }
     'gallery.index_public': { paramsTuple?: []; params?: {} }
+    'projects.index_public': { paramsTuple?: []; params?: {} }
+    'projects.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
     'blogs.public': { paramsTuple?: []; params?: {} }
     'blogs.trashed': { paramsTuple?: []; params?: {} }
     'blogs.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
@@ -28,6 +30,12 @@ export type ScannedRoutes = {
     'gallery.restore': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'gallery.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'gallery.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'projects.trashed': { paramsTuple?: []; params?: {} }
+    'projects.index': { paramsTuple?: []; params?: {} }
+    'projects.store': { paramsTuple?: []; params?: {} }
+    'projects.restore': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'projects.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'projects.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'blogs.index': { paramsTuple?: []; params?: {} }
     'blogs.store': { paramsTuple?: []; params?: {} }
     'blogs.restore': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -39,10 +47,13 @@ export type ScannedRoutes = {
     'auth.login': { paramsTuple?: []; params?: {} }
     'employees.store': { paramsTuple?: []; params?: {} }
     'gallery.store': { paramsTuple?: []; params?: {} }
+    'projects.store': { paramsTuple?: []; params?: {} }
     'blogs.store': { paramsTuple?: []; params?: {} }
   }
   GET: {
     'gallery.index_public': { paramsTuple?: []; params?: {} }
+    'projects.index_public': { paramsTuple?: []; params?: {} }
+    'projects.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
     'blogs.public': { paramsTuple?: []; params?: {} }
     'blogs.trashed': { paramsTuple?: []; params?: {} }
     'blogs.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
@@ -53,10 +64,14 @@ export type ScannedRoutes = {
     'users.index': { paramsTuple?: []; params?: {} }
     'gallery.trashed': { paramsTuple?: []; params?: {} }
     'gallery.index': { paramsTuple?: []; params?: {} }
+    'projects.trashed': { paramsTuple?: []; params?: {} }
+    'projects.index': { paramsTuple?: []; params?: {} }
     'blogs.index': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'gallery.index_public': { paramsTuple?: []; params?: {} }
+    'projects.index_public': { paramsTuple?: []; params?: {} }
+    'projects.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
     'blogs.public': { paramsTuple?: []; params?: {} }
     'blogs.trashed': { paramsTuple?: []; params?: {} }
     'blogs.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
@@ -67,6 +82,8 @@ export type ScannedRoutes = {
     'users.index': { paramsTuple?: []; params?: {} }
     'gallery.trashed': { paramsTuple?: []; params?: {} }
     'gallery.index': { paramsTuple?: []; params?: {} }
+    'projects.trashed': { paramsTuple?: []; params?: {} }
+    'projects.index': { paramsTuple?: []; params?: {} }
     'blogs.index': { paramsTuple?: []; params?: {} }
   }
   PUT: {
@@ -77,12 +94,15 @@ export type ScannedRoutes = {
     'users.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'gallery.restore': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'gallery.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'projects.restore': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'projects.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'blogs.restore': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'blogs.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
     'employees.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'gallery.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'projects.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'blogs.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }

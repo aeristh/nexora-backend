@@ -43,6 +43,30 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'projects.index_public': {
+    methods: ["GET","HEAD"]
+    pattern: '/projects/public'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'projects.show_by_slug': {
+    methods: ["GET","HEAD"]
+    pattern: '/projects/slug/:slug'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { slug: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'blogs.public': {
     methods: ["GET","HEAD"]
     pattern: '/blogs/public'
@@ -286,6 +310,78 @@ export interface Registry {
   'gallery.destroy': {
     methods: ["DELETE"]
     pattern: '/gallery/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'projects.trashed': {
+    methods: ["GET","HEAD"]
+    pattern: '/projects/trashed'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'projects.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/projects'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'projects.store': {
+    methods: ["POST"]
+    pattern: '/projects'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'projects.restore': {
+    methods: ["PUT"]
+    pattern: '/projects/:id/restore'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'projects.update': {
+    methods: ["PUT"]
+    pattern: '/projects/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'projects.destroy': {
+    methods: ["DELETE"]
+    pattern: '/projects/:id'
     types: {
       body: {}
       paramsTuple: [ParamValue]

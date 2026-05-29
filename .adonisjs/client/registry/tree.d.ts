@@ -16,6 +16,16 @@ export interface ApiDefinition {
     update: typeof routes['gallery.update']
     destroy: typeof routes['gallery.destroy']
   }
+  projects: {
+    indexPublic: typeof routes['projects.index_public']
+    showBySlug: typeof routes['projects.show_by_slug']
+    trashed: typeof routes['projects.trashed']
+    index: typeof routes['projects.index']
+    store: typeof routes['projects.store']
+    restore: typeof routes['projects.restore']
+    update: typeof routes['projects.update']
+    destroy: typeof routes['projects.destroy']
+  }
   blogs: {
     public: typeof routes['blogs.public']
     trashed: typeof routes['blogs.trashed']
