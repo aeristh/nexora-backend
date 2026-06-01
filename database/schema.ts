@@ -118,8 +118,10 @@ export class GallerySchema extends BaseModel {
 }
 
 export class ProjectSchema extends BaseModel {
-  static $columns = ['content', 'createdAt', 'deletedAt', 'deletedBy', 'description', 'id', 'imagePath', 'slug', 'tag', 'title', 'updatedAt'] as const
+  static $columns = ['category', 'content', 'createdAt', 'deletedAt', 'deletedBy', 'description', 'id', 'imagePath', 'slug', 'title', 'updatedAt'] as const
   $columns = ProjectSchema.$columns
+  @column()
+  declare category: string
   @column()
   declare content: string | null
   @column.dateTime({ autoCreate: true })
@@ -136,8 +138,6 @@ export class ProjectSchema extends BaseModel {
   declare imagePath: string | null
   @column()
   declare slug: string
-  @column()
-  declare tag: string
   @column()
   declare title: string
   @column.dateTime({ autoCreate: true, autoUpdate: true })
