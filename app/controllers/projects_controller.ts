@@ -29,6 +29,11 @@ export default class ProjectsController {
         return response.ok({ data: projects })
     }
 
+    async show({ params, response }: HttpContext) {
+        const project = await Project.findOrFail(params.id)
+        return response.ok({ data: project })
+    }
+
     async store({ request, response }: HttpContext) {
         const { title, category, description, content } = request.only([
             'title', 'category', 'description', 'content'

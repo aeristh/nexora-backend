@@ -32,6 +32,7 @@ export type ScannedRoutes = {
     'gallery.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'projects.trashed': { paramsTuple?: []; params?: {} }
     'projects.index': { paramsTuple?: []; params?: {} }
+    'projects.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'projects.store': { paramsTuple?: []; params?: {} }
     'projects.restore': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'projects.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -66,6 +67,7 @@ export type ScannedRoutes = {
     'gallery.index': { paramsTuple?: []; params?: {} }
     'projects.trashed': { paramsTuple?: []; params?: {} }
     'projects.index': { paramsTuple?: []; params?: {} }
+    'projects.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'blogs.index': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
@@ -84,6 +86,7 @@ export type ScannedRoutes = {
     'gallery.index': { paramsTuple?: []; params?: {} }
     'projects.trashed': { paramsTuple?: []; params?: {} }
     'projects.index': { paramsTuple?: []; params?: {} }
+    'projects.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'blogs.index': { paramsTuple?: []; params?: {} }
   }
   PUT: {

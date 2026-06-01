@@ -174,6 +174,12 @@ const routes = {
     tokens: [{"old":"/projects","type":0,"val":"projects","end":""}],
     types: placeholder as Registry['projects.index']['types'],
   },
+  'projects.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/projects/:id',
+    tokens: [{"old":"/projects/:id","type":0,"val":"projects","end":""},{"old":"/projects/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['projects.show']['types'],
+  },
   'projects.store': {
     methods: ["POST"],
     pattern: '/projects',

@@ -21,6 +21,7 @@ export interface ApiDefinition {
     showBySlug: typeof routes['projects.show_by_slug']
     trashed: typeof routes['projects.trashed']
     index: typeof routes['projects.index']
+    show: typeof routes['projects.show']
     store: typeof routes['projects.store']
     restore: typeof routes['projects.restore']
     update: typeof routes['projects.update']

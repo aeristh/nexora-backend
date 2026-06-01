@@ -71,6 +71,7 @@ router
     router.get('/projects/trashed', [ProjectsController, 'trashed'])
       .use(middleware.role(['admin']))
     router.get('/projects', [ProjectsController, 'index'])
+    router.get('/projects/:id', [ProjectsController, 'show'])
     router.post('/projects', [ProjectsController, 'store'])
       .use(middleware.role(['admin']))
     router.put('/projects/:id/restore', [ProjectsController, 'restore'])

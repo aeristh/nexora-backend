@@ -343,6 +343,18 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'projects.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/projects/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'projects.store': {
     methods: ["POST"]
     pattern: '/projects'
