@@ -61,6 +61,29 @@ export class BlogSchema extends BaseModel {
   declare updatedAt: DateTime
 }
 
+export class CommentSchema extends BaseModel {
+  static $columns = ['blogId', 'content', 'createdAt', 'deletedAt', 'deletedBy', 'id', 'status', 'updatedAt', 'userId'] as const
+  $columns = CommentSchema.$columns
+  @column()
+  declare blogId: number
+  @column()
+  declare content: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column.dateTime()
+  declare deletedAt: DateTime | null
+  @column()
+  declare deletedBy: number | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare status: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
+  @column()
+  declare userId: number
+}
+
 export class EmployeeSchema extends BaseModel {
   static $columns = ['createdAt', 'deletedAt', 'deletedBy', 'email', 'id', 'name', 'phone', 'position', 'status', 'updatedAt'] as const
   $columns = EmployeeSchema.$columns

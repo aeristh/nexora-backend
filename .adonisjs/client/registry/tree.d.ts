@@ -27,6 +27,14 @@ export interface ApiDefinition {
     update: typeof routes['projects.update']
     destroy: typeof routes['projects.destroy']
   }
+  comment: {
+    index: typeof routes['comment.index']
+    store: typeof routes['comment.store']
+    updateStatus: typeof routes['comment.update_status']
+    destroy: typeof routes['comment.destroy']
+    adminIndex: typeof routes['comment.admin_index']
+    deletedIndex: typeof routes['comment.deleted_index']
+  }
   blogs: {
     public: typeof routes['blogs.public']
     trashed: typeof routes['blogs.trashed']

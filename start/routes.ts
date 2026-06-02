@@ -8,6 +8,7 @@ import BlogsController from '#controllers/blogs_controller'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import ProjectsController from '#controllers/projects_controller'
+import CommentController from '#controllers/comments_controller'
 
 router.post('/register', [AuthController, 'register'])
 router.post('/login', [AuthController, 'login'])
@@ -15,6 +16,8 @@ router.post('/login', [AuthController, 'login'])
 router.get('/gallery/public', [GalleryController, 'indexPublic'])
 router.get('/projects/public', [ProjectsController, 'indexPublic'])
 router.get('/projects/slug/:slug', [ProjectsController, 'showBySlug'])
+
+router.get('/blogs/:blogId/comments', [CommentController, 'index'])
 
 router.get('/uploads/*', async ({ params, response }) => {
   const parts = Array.isArray(params['*']) ? params['*'] : [params['*']]
@@ -87,5 +90,17 @@ router
       .use(middleware.role(['admin']))
     router.put('/blogs/:id', [BlogsController, 'update'])
     router.delete('/blogs/:id', [BlogsController, 'destroy'])
+
+    router.post('/blogs/:blogId/comments', [CommentController, 'store'])
+
+    router.patch('/comments/:id/status', [CommentController, 'updateStatus'])
+      .use(middleware.role(['admin']))
+    router.delete('/comments/:id', [CommentController, 'destroy'])
+      .use(middleware.role(['admin']))
+
+    router.get('/admin/comments', [CommentController, 'adminIndex'])
+      .use(middleware.role(['admin']))
+    router.get('/admin/comments/deleted', [CommentController, 'deletedIndex'])
+      .use(middleware.role(['admin']))
   })
   .use(middleware.auth())

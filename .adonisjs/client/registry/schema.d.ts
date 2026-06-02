@@ -67,6 +67,18 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'comment.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/blogs/:blogId/comments'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { blogId: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'blogs.public': {
     methods: ["GET","HEAD"]
     pattern: '/blogs/public'
@@ -458,6 +470,66 @@ export interface Registry {
       body: {}
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'comment.store': {
+    methods: ["POST"]
+    pattern: '/blogs/:blogId/comments'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { blogId: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'comment.update_status': {
+    methods: ["PATCH"]
+    pattern: '/comments/:id/status'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'comment.destroy': {
+    methods: ["DELETE"]
+    pattern: '/comments/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'comment.admin_index': {
+    methods: ["GET","HEAD"]
+    pattern: '/admin/comments'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'comment.deleted_index': {
+    methods: ["GET","HEAD"]
+    pattern: '/admin/comments/deleted'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
       query: {}
       response: unknown
       errorResponse: unknown
