@@ -3,7 +3,15 @@ import Comment from '#models/comment'
 import User from '#models/user'
 import { DateTime } from 'luxon'
 
-export default class CommentController {
+export default class CommentsController {
+
+    private async getDisplayName(c: Comment): Promise<string> {
+        if (c.userId) {
+            const user = await User.find(c.userId)
+            return user?.fullName ?? 'Pengguna'
+        }
+        return c.guestName ?? 'Tamu'
+    }
 
     async index({ params, response }: HttpContext) {
         const comments = await Comment.query()
@@ -13,38 +21,60 @@ export default class CommentController {
             .orderBy('created_at', 'asc')
 
         const result = await Promise.all(
-            comments.map(async (c) => {
-                const user = await User.find(c.userId)
-                return {
-                    id: c.id,
-                    content: c.content,
-                    status: c.status,
-                    userName: user?.fullName ?? 'Pengguna',
-                    createdAt: c.createdAt,
-                }
-            })
+            comments.map(async (c) => ({
+                id: c.id,
+                content: c.content,
+                status: c.status,
+                userName: await this.getDisplayName(c),
+                createdAt: c.createdAt,
+            }))
         )
 
         return response.ok(result)
     }
 
     async store({ params, request, auth, response }: HttpContext) {
-        const user = auth.user!
-        const { content } = request.only(['content'])
+        const { content, guestName, guestEmail } = request.only([
+            'content', 'guestName', 'guestEmail'
+        ])
 
         if (!content || content.trim().length < 3) {
             return response.badRequest({ message: 'Komentar terlalu pendek.' })
         }
 
+        let userId: number | null = null
+        let resolvedGuestName: string | null = null
+        let resolvedGuestEmail: string | null = null
+
+        try {
+            await auth.authenticate()
+            userId = auth.user!.id
+        } catch {
+            if (!guestName || !guestEmail) {
+                return response.badRequest({
+                    message: 'Nama dan email wajib diisi untuk komentar tanpa login.'
+                })
+            }
+            const existingUser = await User.findBy('email', guestEmail)
+            if (existingUser) {
+                userId = existingUser.id
+            } else {
+                resolvedGuestName = guestName.trim()
+                resolvedGuestEmail = guestEmail.trim()
+            }
+        }
+
         const comment = await Comment.create({
             blogId: params.blogId,
-            userId: user.id,
+            userId,
+            guestName: resolvedGuestName,
+            guestEmail: resolvedGuestEmail,
             content: content.trim(),
             status: 'hidden',
         })
 
         return response.created({
-            message: 'Komentar terkirim, menunggu persetujuan.',
+            message: 'Komentar terkirim.',
             comment,
         })
     }
@@ -85,17 +115,16 @@ export default class CommentController {
             .orderBy('created_at', 'desc')
 
         const result = await Promise.all(
-            comments.map(async (c) => {
-                const user = await User.find(c.userId)
-                return {
-                    id: c.id,
-                    blogId: c.blogId,
-                    content: c.content,
-                    status: c.status,
-                    userName: user?.fullName ?? 'Pengguna',
-                    createdAt: c.createdAt,
-                }
-            })
+            comments.map(async (c) => ({
+                id: c.id,
+                blogId: c.blogId,
+                content: c.content,
+                status: c.status,
+                userName: await this.getDisplayName(c),
+                isGuest: !c.userId,
+                guestEmail: c.guestEmail,
+                createdAt: c.createdAt,
+            }))
         )
 
         return response.ok(result)
@@ -108,14 +137,14 @@ export default class CommentController {
 
         const result = await Promise.all(
             comments.map(async (c) => {
-                const user = await User.find(c.userId)
                 const deletedByUser = await User.find(c.deletedBy)
                 return {
                     id: c.id,
                     blogId: c.blogId,
                     content: c.content,
                     status: c.status,
-                    userName: user?.fullName ?? 'Pengguna',
+                    userName: await this.getDisplayName(c),
+                    isGuest: !c.userId,
                     createdAt: c.createdAt,
                     deletedAt: c.deletedAt,
                     deletedBy: deletedByUser?.fullName ?? 'Unknown',

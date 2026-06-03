@@ -36,11 +36,17 @@ const routes = {
     tokens: [{"old":"/projects/slug/:slug","type":0,"val":"projects","end":""},{"old":"/projects/slug/:slug","type":0,"val":"slug","end":""},{"old":"/projects/slug/:slug","type":1,"val":"slug","end":""}],
     types: placeholder as Registry['projects.show_by_slug']['types'],
   },
-  'comment.index': {
+  'comments.index': {
     methods: ["GET","HEAD"],
     pattern: '/blogs/:blogId/comments',
     tokens: [{"old":"/blogs/:blogId/comments","type":0,"val":"blogs","end":""},{"old":"/blogs/:blogId/comments","type":1,"val":"blogId","end":""},{"old":"/blogs/:blogId/comments","type":0,"val":"comments","end":""}],
-    types: placeholder as Registry['comment.index']['types'],
+    types: placeholder as Registry['comments.index']['types'],
+  },
+  'comments.store': {
+    methods: ["POST"],
+    pattern: '/blogs/:blogId/comments',
+    tokens: [{"old":"/blogs/:blogId/comments","type":0,"val":"blogs","end":""},{"old":"/blogs/:blogId/comments","type":1,"val":"blogId","end":""},{"old":"/blogs/:blogId/comments","type":0,"val":"comments","end":""}],
+    types: placeholder as Registry['comments.store']['types'],
   },
   'blogs.public': {
     methods: ["GET","HEAD"],
@@ -240,35 +246,29 @@ const routes = {
     tokens: [{"old":"/blogs/:id","type":0,"val":"blogs","end":""},{"old":"/blogs/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['blogs.destroy']['types'],
   },
-  'comment.store': {
-    methods: ["POST"],
-    pattern: '/blogs/:blogId/comments',
-    tokens: [{"old":"/blogs/:blogId/comments","type":0,"val":"blogs","end":""},{"old":"/blogs/:blogId/comments","type":1,"val":"blogId","end":""},{"old":"/blogs/:blogId/comments","type":0,"val":"comments","end":""}],
-    types: placeholder as Registry['comment.store']['types'],
-  },
-  'comment.update_status': {
+  'comments.update_status': {
     methods: ["PATCH"],
     pattern: '/comments/:id/status',
     tokens: [{"old":"/comments/:id/status","type":0,"val":"comments","end":""},{"old":"/comments/:id/status","type":1,"val":"id","end":""},{"old":"/comments/:id/status","type":0,"val":"status","end":""}],
-    types: placeholder as Registry['comment.update_status']['types'],
+    types: placeholder as Registry['comments.update_status']['types'],
   },
-  'comment.destroy': {
+  'comments.destroy': {
     methods: ["DELETE"],
     pattern: '/comments/:id',
     tokens: [{"old":"/comments/:id","type":0,"val":"comments","end":""},{"old":"/comments/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['comment.destroy']['types'],
+    types: placeholder as Registry['comments.destroy']['types'],
   },
-  'comment.admin_index': {
+  'comments.admin_index': {
     methods: ["GET","HEAD"],
     pattern: '/admin/comments',
     tokens: [{"old":"/admin/comments","type":0,"val":"admin","end":""},{"old":"/admin/comments","type":0,"val":"comments","end":""}],
-    types: placeholder as Registry['comment.admin_index']['types'],
+    types: placeholder as Registry['comments.admin_index']['types'],
   },
-  'comment.deleted_index': {
+  'comments.deleted_index': {
     methods: ["GET","HEAD"],
     pattern: '/admin/comments/deleted',
     tokens: [{"old":"/admin/comments/deleted","type":0,"val":"admin","end":""},{"old":"/admin/comments/deleted","type":0,"val":"comments","end":""},{"old":"/admin/comments/deleted","type":0,"val":"deleted","end":""}],
-    types: placeholder as Registry['comment.deleted_index']['types'],
+    types: placeholder as Registry['comments.deleted_index']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 

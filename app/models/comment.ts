@@ -9,7 +9,13 @@ export default class Comment extends BaseModel {
     declare blogId: number
 
     @column()
-    declare userId: number
+    declare userId: number | null
+
+    @column()
+    declare guestName: string | null
+
+    @column()
+    declare guestEmail: string | null
 
     @column()
     declare content: string
