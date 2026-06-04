@@ -1,5 +1,7 @@
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, column, belongsTo } from '@adonisjs/lucid/orm'
+import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import { DateTime } from 'luxon'
+import Blog from '#models/blog'
 
 export default class Comment extends BaseModel {
     @column({ isPrimary: true })
@@ -34,4 +36,7 @@ export default class Comment extends BaseModel {
 
     @column()
     declare deletedBy: number | null
+
+    @belongsTo(() => Blog)
+    declare blog: BelongsTo<typeof Blog>
 }

@@ -112,12 +112,15 @@ export default class CommentsController {
     async adminIndex({ response }: HttpContext) {
         const comments = await Comment.query()
             .whereNull('deleted_at')
+            .preload('blog')
             .orderBy('created_at', 'desc')
 
         const result = await Promise.all(
             comments.map(async (c) => ({
                 id: c.id,
                 blogId: c.blogId,
+                blogSlug: c.blog?.slug ?? null,
+                blogTitle: c.blog?.title ?? null,
                 content: c.content,
                 status: c.status,
                 userName: await this.getDisplayName(c),
