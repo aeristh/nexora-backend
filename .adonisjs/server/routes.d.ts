@@ -8,6 +8,7 @@ export type ScannedRoutes = {
     'auth.login': { paramsTuple?: []; params?: {} }
     'gallery.index_public': { paramsTuple?: []; params?: {} }
     'projects.index_public': { paramsTuple?: []; params?: {} }
+    'contact_info.public': { paramsTuple?: []; params?: {} }
     'projects.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
     'comments.index': { paramsTuple: [ParamValue]; params: {'blogId': ParamValue} }
     'comments.store': { paramsTuple: [ParamValue]; params: {'blogId': ParamValue} }
@@ -44,6 +45,11 @@ export type ScannedRoutes = {
     'blogs.restore': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'blogs.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'blogs.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contact_info.index': { paramsTuple?: []; params?: {} }
+    'contact_info.store': { paramsTuple?: []; params?: {} }
+    'contact_info.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contact_info.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contact_info.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'comments.update_status': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'comments.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'comments.admin_index': { paramsTuple?: []; params?: {} }
@@ -57,10 +63,12 @@ export type ScannedRoutes = {
     'gallery.store': { paramsTuple?: []; params?: {} }
     'projects.store': { paramsTuple?: []; params?: {} }
     'blogs.store': { paramsTuple?: []; params?: {} }
+    'contact_info.store': { paramsTuple?: []; params?: {} }
   }
   GET: {
     'gallery.index_public': { paramsTuple?: []; params?: {} }
     'projects.index_public': { paramsTuple?: []; params?: {} }
+    'contact_info.public': { paramsTuple?: []; params?: {} }
     'projects.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
     'comments.index': { paramsTuple: [ParamValue]; params: {'blogId': ParamValue} }
     'blogs.public': { paramsTuple?: []; params?: {} }
@@ -77,12 +85,15 @@ export type ScannedRoutes = {
     'projects.index': { paramsTuple?: []; params?: {} }
     'projects.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'blogs.index': { paramsTuple?: []; params?: {} }
+    'contact_info.index': { paramsTuple?: []; params?: {} }
+    'contact_info.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'comments.admin_index': { paramsTuple?: []; params?: {} }
     'comments.deleted_index': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'gallery.index_public': { paramsTuple?: []; params?: {} }
     'projects.index_public': { paramsTuple?: []; params?: {} }
+    'contact_info.public': { paramsTuple?: []; params?: {} }
     'projects.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
     'comments.index': { paramsTuple: [ParamValue]; params: {'blogId': ParamValue} }
     'blogs.public': { paramsTuple?: []; params?: {} }
@@ -99,6 +110,8 @@ export type ScannedRoutes = {
     'projects.index': { paramsTuple?: []; params?: {} }
     'projects.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'blogs.index': { paramsTuple?: []; params?: {} }
+    'contact_info.index': { paramsTuple?: []; params?: {} }
+    'contact_info.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'comments.admin_index': { paramsTuple?: []; params?: {} }
     'comments.deleted_index': { paramsTuple?: []; params?: {} }
   }
@@ -114,12 +127,14 @@ export type ScannedRoutes = {
     'projects.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'blogs.restore': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'blogs.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contact_info.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
     'employees.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'gallery.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'projects.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'blogs.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contact_info.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'comments.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   PATCH: {

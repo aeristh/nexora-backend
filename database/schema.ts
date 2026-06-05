@@ -88,6 +88,33 @@ export class CommentSchema extends BaseModel {
   declare userId: number | null
 }
 
+export class ContactInfoSchema extends BaseModel {
+  static $columns = ['createdAt', 'deletedAt', 'deletedBy', 'displayText', 'iconKey', 'id', 'isActive', 'label', 'sortOrder', 'updatedAt', 'url'] as const
+  $columns = ContactInfoSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column.dateTime()
+  declare deletedAt: DateTime | null
+  @column()
+  declare deletedBy: number | null
+  @column()
+  declare displayText: string
+  @column()
+  declare iconKey: string
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare isActive: boolean | null
+  @column()
+  declare label: string
+  @column()
+  declare sortOrder: number | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
+  @column()
+  declare url: string
+}
+
 export class EmployeeSchema extends BaseModel {
   static $columns = ['createdAt', 'deletedAt', 'deletedBy', 'email', 'id', 'name', 'phone', 'position', 'status', 'updatedAt'] as const
   $columns = EmployeeSchema.$columns

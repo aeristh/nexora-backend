@@ -27,6 +27,14 @@ export interface ApiDefinition {
     update: typeof routes['projects.update']
     destroy: typeof routes['projects.destroy']
   }
+  contactInfo: {
+    public: typeof routes['contact_info.public']
+    index: typeof routes['contact_info.index']
+    store: typeof routes['contact_info.store']
+    show: typeof routes['contact_info.show']
+    update: typeof routes['contact_info.update']
+    destroy: typeof routes['contact_info.destroy']
+  }
   comments: {
     index: typeof routes['comments.index']
     store: typeof routes['comments.store']

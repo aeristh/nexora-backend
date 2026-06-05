@@ -55,6 +55,18 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'contact_info.public': {
+    methods: ["GET","HEAD"]
+    pattern: '/contact/public'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'projects.show_by_slug': {
     methods: ["GET","HEAD"]
     pattern: '/projects/slug/:slug'
@@ -478,6 +490,66 @@ export interface Registry {
   'blogs.destroy': {
     methods: ["DELETE"]
     pattern: '/blogs/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'contact_info.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/contact'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'contact_info.store': {
+    methods: ["POST"]
+    pattern: '/contact'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'contact_info.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/contact/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'contact_info.update': {
+    methods: ["PUT"]
+    pattern: '/contact/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'contact_info.destroy': {
+    methods: ["DELETE"]
+    pattern: '/contact/:id'
     types: {
       body: {}
       paramsTuple: [ParamValue]

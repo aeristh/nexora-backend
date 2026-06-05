@@ -9,12 +9,14 @@ import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import ProjectsController from '#controllers/projects_controller'
 import CommentController from '#controllers/comments_controller'
+import ContactInfoController from '#controllers/contact_infos_controller'
 
 router.post('/register', [AuthController, 'register'])
 router.post('/login', [AuthController, 'login'])
 
 router.get('/gallery/public', [GalleryController, 'indexPublic'])
 router.get('/projects/public', [ProjectsController, 'indexPublic'])
+router.get('/contact/public', [ContactInfoController, 'public'])
 router.get('/projects/slug/:slug', [ProjectsController, 'showBySlug'])
 
 router.get('/blogs/:blogId/comments', [CommentController, 'index'])
@@ -71,6 +73,12 @@ router
     router.put('/blogs/:id/restore', [BlogsController, 'restore']).use(middleware.role(['admin']))
     router.put('/blogs/:id', [BlogsController, 'update'])
     router.delete('/blogs/:id', [BlogsController, 'destroy'])
+
+    router.get('/contact', [ContactInfoController, 'index']).use(middleware.role(['admin']))
+    router.post('/contact', [ContactInfoController, 'store']).use(middleware.role(['admin']))
+    router.get('/contact/:id', [ContactInfoController, 'show']).use(middleware.role(['admin']))
+    router.put('/contact/:id', [ContactInfoController, 'update']).use(middleware.role(['admin']))
+    router.delete('/contact/:id', [ContactInfoController, 'destroy']).use(middleware.role(['admin']))
 
     router.patch('/comments/:id/status', [CommentController, 'updateStatus']).use(middleware.role(['admin']))
     router.delete('/comments/:id', [CommentController, 'destroy']).use(middleware.role(['admin']))

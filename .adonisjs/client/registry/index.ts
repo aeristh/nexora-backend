@@ -30,6 +30,12 @@ const routes = {
     tokens: [{"old":"/projects/public","type":0,"val":"projects","end":""},{"old":"/projects/public","type":0,"val":"public","end":""}],
     types: placeholder as Registry['projects.index_public']['types'],
   },
+  'contact_info.public': {
+    methods: ["GET","HEAD"],
+    pattern: '/contact/public',
+    tokens: [{"old":"/contact/public","type":0,"val":"contact","end":""},{"old":"/contact/public","type":0,"val":"public","end":""}],
+    types: placeholder as Registry['contact_info.public']['types'],
+  },
   'projects.show_by_slug': {
     methods: ["GET","HEAD"],
     pattern: '/projects/slug/:slug',
@@ -245,6 +251,36 @@ const routes = {
     pattern: '/blogs/:id',
     tokens: [{"old":"/blogs/:id","type":0,"val":"blogs","end":""},{"old":"/blogs/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['blogs.destroy']['types'],
+  },
+  'contact_info.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/contact',
+    tokens: [{"old":"/contact","type":0,"val":"contact","end":""}],
+    types: placeholder as Registry['contact_info.index']['types'],
+  },
+  'contact_info.store': {
+    methods: ["POST"],
+    pattern: '/contact',
+    tokens: [{"old":"/contact","type":0,"val":"contact","end":""}],
+    types: placeholder as Registry['contact_info.store']['types'],
+  },
+  'contact_info.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/contact/:id',
+    tokens: [{"old":"/contact/:id","type":0,"val":"contact","end":""},{"old":"/contact/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['contact_info.show']['types'],
+  },
+  'contact_info.update': {
+    methods: ["PUT"],
+    pattern: '/contact/:id',
+    tokens: [{"old":"/contact/:id","type":0,"val":"contact","end":""},{"old":"/contact/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['contact_info.update']['types'],
+  },
+  'contact_info.destroy': {
+    methods: ["DELETE"],
+    pattern: '/contact/:id',
+    tokens: [{"old":"/contact/:id","type":0,"val":"contact","end":""},{"old":"/contact/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['contact_info.destroy']['types'],
   },
   'comments.update_status': {
     methods: ["PATCH"],

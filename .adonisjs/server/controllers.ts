@@ -8,6 +8,7 @@ export const controllers = {
   Auth: () => import('#controllers/auth_controller'),
   Blogs: () => import('#controllers/blogs_controller'),
   Comments: () => import('#controllers/comments_controller'),
+  ContactInfos: () => import('#controllers/contact_infos_controller'),
   Employees: () => import('#controllers/employees_controller'),
   Gallery: () => import('#controllers/gallery_controller'),
   NewAccount: () => import('#controllers/new_account_controller'),
