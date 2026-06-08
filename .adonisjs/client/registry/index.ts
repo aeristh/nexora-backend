@@ -84,6 +84,12 @@ const routes = {
     tokens: [{"old":"/me","type":0,"val":"me","end":""}],
     types: placeholder as Registry['auth.me']['types'],
   },
+  'users.change_password': {
+    methods: ["PATCH"],
+    pattern: '/me/change-password',
+    tokens: [{"old":"/me/change-password","type":0,"val":"me","end":""},{"old":"/me/change-password","type":0,"val":"change-password","end":""}],
+    types: placeholder as Registry['users.change_password']['types'],
+  },
   'employees.trashed': {
     methods: ["GET","HEAD"],
     pattern: '/employees/trashed',

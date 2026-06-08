@@ -163,6 +163,18 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'users.change_password': {
+    methods: ["PATCH"]
+    pattern: '/me/change-password'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'employees.trashed': {
     methods: ["GET","HEAD"]
     pattern: '/employees/trashed'

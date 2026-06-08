@@ -1,5 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
+import hash from '@adonisjs/core/services/hash'
 
 export default class UsersController {
 
@@ -65,5 +66,27 @@ export default class UsersController {
     await user.save()
 
     return response.ok({ message: 'User berhasil diperbarui', user })
+  }
+  async changePassword({ request, auth, response }: HttpContext) {
+    const user = await auth.authenticate()
+    const { currentPassword, newPassword } = request.only(['currentPassword', 'newPassword'])
+
+    if (!currentPassword || !newPassword) {
+      return response.badRequest({ message: 'Semua field wajib diisi.' })
+    }
+
+    const isValid = await hash.verify(user.password, currentPassword)
+    if (!isValid) {
+      return response.badRequest({ message: 'Password saat ini salah.' })
+    }
+
+    if (newPassword.length < 6) {
+      return response.badRequest({ message: 'Password baru minimal 6 karakter.' })
+    }
+
+    user.password = newPassword
+    await user.save()
+
+    return response.ok({ message: 'Password berhasil diubah.' })
   }
 }

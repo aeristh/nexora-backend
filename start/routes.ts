@@ -40,6 +40,7 @@ router.get('/blogs/:id', [BlogsController, 'show'])
 router
   .group(() => {
     router.get('/me', [AuthController, 'me'])
+    router.patch('/me/change-password', [UsersController, 'changePassword'])
 
     router.get('/employees/trashed', [EmployeesController, 'trashed']).use(middleware.role(['admin']))
     router.get('/employees', [EmployeesController, 'index'])

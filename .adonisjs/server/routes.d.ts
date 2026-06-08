@@ -17,6 +17,7 @@ export type ScannedRoutes = {
     'blogs.show_by_slug': { paramsTuple: [ParamValue]; params: {'slug': ParamValue} }
     'blogs.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'auth.me': { paramsTuple?: []; params?: {} }
+    'users.change_password': { paramsTuple?: []; params?: {} }
     'employees.trashed': { paramsTuple?: []; params?: {} }
     'employees.index': { paramsTuple?: []; params?: {} }
     'employees.store': { paramsTuple?: []; params?: {} }
@@ -115,6 +116,10 @@ export type ScannedRoutes = {
     'comments.admin_index': { paramsTuple?: []; params?: {} }
     'comments.deleted_index': { paramsTuple?: []; params?: {} }
   }
+  PATCH: {
+    'users.change_password': { paramsTuple?: []; params?: {} }
+    'comments.update_status': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+  }
   PUT: {
     'employees.restore': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'employees.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -136,9 +141,6 @@ export type ScannedRoutes = {
     'blogs.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'contact_info.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'comments.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-  }
-  PATCH: {
-    'comments.update_status': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

@@ -54,6 +54,13 @@ export interface ApiDefinition {
     update: typeof routes['blogs.update']
     destroy: typeof routes['blogs.destroy']
   }
+  users: {
+    changePassword: typeof routes['users.change_password']
+    index: typeof routes['users.index']
+    updateRole: typeof routes['users.update_role']
+    toggleActive: typeof routes['users.toggle_active']
+    update: typeof routes['users.update']
+  }
   employees: {
     trashed: typeof routes['employees.trashed']
     index: typeof routes['employees.index']
@@ -61,11 +68,5 @@ export interface ApiDefinition {
     restore: typeof routes['employees.restore']
     update: typeof routes['employees.update']
     destroy: typeof routes['employees.destroy']
-  }
-  users: {
-    index: typeof routes['users.index']
-    updateRole: typeof routes['users.update_role']
-    toggleActive: typeof routes['users.toggle_active']
-    update: typeof routes['users.update']
   }
 }
