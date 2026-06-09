@@ -8,9 +8,6 @@ export default class ContactInfo extends BaseModel {
     declare id: number
 
     @column()
-    declare platform: string
-
-    @column()
     declare label: string
 
     @column()
